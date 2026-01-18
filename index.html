@@ -4,6 +4,250 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mark Angelo Lasala - Sporty Portfolio</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* =====================
+           BASE STYLES
+        ===================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #0f172a;
+            color: #e5e7eb;
+            line-height: 1.7;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: auto;
+            padding: 60px 0;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Oswald', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #38bdf8;
+        }
+
+        /* =====================
+           HEADER
+        ===================== */
+        header {
+            height: 100vh;
+            background: linear-gradient(135deg, #020617, #020617cc),
+                        url('hero.jpg') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            animation: fadeUp 1s ease forwards;
+        }
+
+        header .tagline {
+            margin-top: 15px;
+            font-size: 1.1rem;
+            color: #94a3b8;
+            animation: fadeUp 1.4s ease forwards;
+        }
+
+        /* =====================
+           NAVIGATION
+        ===================== */
+        .main-nav {
+            position: sticky;
+            top: 0;
+            background: #020617;
+            z-index: 100;
+            border-bottom: 1px solid #1e293b;
+        }
+
+        .main-nav .container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            padding: 15px 0;
+        }
+
+        .nav-button {
+            text-decoration: none;
+            color: #e5e7eb;
+            padding: 10px 18px;
+            border-radius: 30px;
+            background: #020617;
+            border: 1px solid #38bdf8;
+            transition: all 0.3s ease;
+        }
+
+        .nav-button:hover {
+            background: #38bdf8;
+            color: #020617;
+            transform: translateY(-3px);
+        }
+
+        /* =====================
+           SECTIONS ANIMATION
+        ===================== */
+        section {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.9s ease;
+        }
+
+        section.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* =====================
+           ABOUT ME
+        ===================== */
+        .about-me-picture {
+            width: 200px;
+            border-radius: 50%;
+            margin: 25px 0;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .about-me-picture:hover {
+            transform: scale(1.08);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        /* =====================
+           PERSONAL DETAILS
+        ===================== */
+        ul {
+            list-style: none;
+        }
+
+        ul li {
+            margin-bottom: 10px;
+        }
+
+        /* =====================
+           SKILLS
+        ===================== */
+        .skills-grid {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .skill-tag {
+            padding: 10px 18px;
+            border-radius: 25px;
+            background: #020617;
+            border: 1px solid #38bdf8;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: #38bdf8;
+            color: #020617;
+            transform: scale(1.15);
+        }
+
+        /* =====================
+           PROJECTS
+        ===================== */
+        .project-item {
+            margin-top: 40px;
+            padding: 25px;
+            border-radius: 15px;
+            background: #020617;
+            border: 1px solid #1e293b;
+            transition: all 0.4s ease;
+        }
+
+        .project-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 45px rgba(0,0,0,0.6);
+        }
+
+        .project-img {
+            width: 100%;
+            margin: 20px 0;
+            border-radius: 10px;
+            transition: transform 0.4s ease;
+        }
+
+        .project-item:hover .project-img {
+            transform: scale(1.05);
+        }
+
+        .button {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 12px 22px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .button-primary {
+            background: #38bdf8;
+            color: #020617;
+        }
+
+        .button-primary:hover {
+            background: #0ea5e9;
+            transform: scale(1.05);
+        }
+
+        /* =====================
+           FOOTER
+        ===================== */
+        footer {
+            text-align: center;
+            padding: 25px 0;
+            background: #020617;
+            border-top: 1px solid #1e293b;
+            color: #94a3b8;
+        }
+
+        /* =====================
+           ANIMATIONS
+        ===================== */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mark Angelo Lasala - Sporty Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
@@ -12,7 +256,7 @@
     <header>
         <div class="container hero-content">
             <h1>Hi, I'm Mark Angelo Lasala</h1>
-            <p class="tagline">Crafting dynamic web experiences with precision and passion.</p>
+            <p class="tagline">An Information Technology student passionate about programming and web development.</p>
         </div>
     </header>
 
@@ -70,6 +314,23 @@ I look forward to connecting with like-minded individuals and contributing to pr
         <section id="projects" class="container">
             <h2>Works</h2>
 
+<div class="project-item">
+    <h3>Capstone Project:VolleyAI; REAL-TIME VOLLEYBALL POSE ESTIMATION AND PERFORMANCE ANALYSIS USING MACHINE LEARNING</h3>
+    <img src="6.png" alt="VolleyAI Capstone Project Screenshot" class="project-img">
+    <p>
+        This is my official Capstone Project developed at SLSU Bontoc. VolleyAI is a web-based
+        volleyball performance analysis system that uses computer vision and artificial intelligence
+        to evaluate player movements. The system allows athletes to upload volleyball training videos,
+        automatically analyzes body poses and actions, and generates quantitative performance scores
+        and AI-based feedback. Coaches can review sessions, assign drills, and provide manual feedback,
+        enabling data-driven training and continuous performance improvement.
+    </p>
+    <a href="https://volleyai.cloud/" target="_blank" class="button button-primary">
+        View Capstone Project
+    </a>
+</div>
+
+
             <div class="project-item">
                 <h3>Bargo POS</h3>
                 <img src="3.png" alt="Project 1 Screenshot" class="project-img">
@@ -80,7 +341,7 @@ I look forward to connecting with like-minded individuals and contributing to pr
             </div>
 
             <div class="project-item">
-                <h3>(Document Tracking System)Procurement</h3>
+                <h3>(Document Tracking System) Procurement</h3>
                 <img src="4.png" alt="Project 2 Screenshot" class="project-img">
                 <p>
                     The Document Tracking System for Procurement is a digital tool used to monitor, manage, and track procurement-related documents, ensuring transparency, accountability, and efficient workflow throughout the procurement process.
@@ -103,6 +364,27 @@ I look forward to connecting with like-minded individuals and contributing to pr
             <p>&copy; 2025 Mark Angelo Lasala. Unleashing digital potential.</p>
         </div>
     </footer>
+
+</body>
+</html>
+    <script>
+        const sections = document.querySelectorAll("section");
+
+        const revealOnScroll = () => {
+            const triggerBottom = window.innerHeight * 0.85;
+
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+
+                if (sectionTop < triggerBottom) {
+                    section.classList.add("show");
+                }
+            });
+        };
+
+        window.addEventListener("scroll", revealOnScroll);
+        revealOnScroll();
+    </script>
 
 </body>
 </html>

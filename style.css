@@ -56,7 +56,7 @@ body::before {
 
 /* Header - Hero Section */
 header {
-    background-image: url('1.jpg'); /* Your image as background */
+    background-image: url('9.jpg'); /* Your image as background */
     background-size: cover; /* Covers the entire header area */
     background-position: center center; /* Centers the image */
     background-repeat: no-repeat; /* Prevents repeating */
@@ -104,15 +104,60 @@ header h1 {
     line-height: 1.1;
 }
 
-.tagline {
-    color: var(--text-lighter);
-    font-family: var(--body-font);
-    font-size: 1.1em;
-    margin-bottom: 25px;
-    font-style: italic;
-    font-weight: 300;
+header .tagline {
+    margin-top: 15px;
+    font-size: 1.1rem;
+    color: #94a3b8;
+    animation: fadeUp 1.4s ease forwards, pulse 2s ease-in-out 1.4s infinite;
 }
 
+/* Animations */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: translateY(-5px) scale(1.02);
+    }
+}
+
+@keyframes glow {
+    0% {
+        text-shadow: 0 0 10px rgba(56, 189, 248, 0.3),
+                     0 0 20px rgba(56, 189, 248, 0.2);
+        transform: scale(1);
+    }
+    33% {
+        text-shadow: 0 0 20px rgba(168, 85, 247, 0.6),
+                     0 0 30px rgba(168, 85, 247, 0.4),
+                     0 0 40px rgba(168, 85, 247, 0.3);
+        transform: scale(1.02);
+    }
+    66% {
+        text-shadow: 0 0 20px rgba(34, 197, 94, 0.6),
+                     0 0 30px rgba(34, 197, 94, 0.4),
+                     0 0 40px rgba(34, 197, 94, 0.3);
+        transform: scale(1.02);
+    }
+    100% {
+        text-shadow: 0 0 10px rgba(56, 189, 248, 0.3),
+                     0 0 20px rgba(56, 189, 248, 0.2);
+        transform: scale(1);
+    }
+}
 /* Main Navigation Bar */
 .main-nav {
     background-color: var(--dark-bg-2);
