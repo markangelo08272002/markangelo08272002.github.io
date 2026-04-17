@@ -1,390 +1,664 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mark Angelo Lasala - Sporty Portfolio</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mark Angelo Lasala — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --coal:      #111110;
+      --charcoal:  #1a1a18;
+      --surface:   #222220;
+      --surface2:  #2a2a28;
+      --border:    rgba(255,255,255,0.07);
+      --border-md: rgba(255,255,255,0.12);
+      --gold:      #c9a84c;
+      --gold-lite: rgba(201,168,76,0.10);
+      --gold-mid:  rgba(201,168,76,0.22);
+      --text-1:    #f0ede6;
+      --text-2:    #a09d96;
+      --text-3:    #686560;
+      --font-disp: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
-    <style>
-        /* =====================
-           BASE STYLES
-        ===================== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+    body {
+      background: var(--coal);
+      color: var(--text-1);
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.75;
+    }
+
+    /* ─── TOPBAR ─── */
+    .topbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(17,17,16,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 60px;
+      height: 64px;
+    }
+
+    .topbar-brand {
+      font-family: var(--font-disp);
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text-1);
+      letter-spacing: 0.02em;
+    }
+    .topbar-brand span { color: var(--gold); }
+
+    .topbar-nav { display: flex; gap: 4px; }
+
+    .topbar-nav a {
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text-2);
+      padding: 6px 14px;
+      border-radius: 4px;
+      letter-spacing: 0.03em;
+      transition: color 0.2s, background 0.2s;
+    }
+    .topbar-nav a:hover { color: var(--text-1); background: var(--surface); }
+
+    /* ─── HERO ─── */
+    /* ─── UPDATED HERO SECTION ─── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 60px 80px;
+      position: relative;
+      overflow: hidden;
+      /* Replace 'profile.jpg' with your actual image filename */
+      background: linear-gradient(rgba(17, 17, 16, 0.85), rgba(17, 17, 16, 0.85)), 
+                  url('9.jpg') no-repeat center center;
+      background-size: cover;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; right: -200px;
+      width: 700px; height: 700px;
+      border-radius: 50%;
+      /* Subtle gold glow to keep the premium aesthetic */
+      background: radial-gradient(circle, rgba(201,168,76,0.15) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 1;
+    }
+    
+    /* Ensure text stays above the background image */
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 1100px;
+      margin: auto;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    .hero-eyebrow-line { width: 40px; height: 1px; background: var(--gold); }
+    .hero-eyebrow-text {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .hero-title {
+      font-family: var(--font-disp);
+      font-size: clamp(52px, 7vw, 88px);
+      font-weight: 600;
+      line-height: 1.02;
+      letter-spacing: -0.01em;
+      color: var(--text-1);
+      margin-bottom: 28px;
+    }
+    .hero-title em { font-style: italic; color: var(--gold); }
+
+    .hero-bio {
+      font-size: 15px;
+      color: var(--text-2);
+      max-width: 500px;
+      line-height: 1.8;
+      margin-bottom: 44px;
+    }
+
+    .hero-actions { display: flex; gap: 14px; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 28px;
+      border-radius: 4px;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      transition: all 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-gold { background: var(--gold); color: #111; }
+    .btn-gold:hover { background: #d4b45e; transform: translateY(-1px); }
+    .btn-outline { background: transparent; color: var(--text-2); border: 1px solid var(--border-md); }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+    .hero-card {
+      background: var(--surface);
+      border: 1px solid var(--border-md);
+      border-radius: 12px;
+      padding: 36px;
+      position: relative;
+    }
+    .hero-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 24px; right: 24px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .hcard-avatar {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      background: var(--gold-mid);
+      border: 2px solid var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-disp);
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+    .hcard-name { font-family: var(--font-disp); font-size: 22px; font-weight: 600; color: var(--text-1); margin-bottom: 4px; }
+    .hcard-role { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 24px; }
+    .hcard-divider { height: 1px; background: var(--border); margin-bottom: 20px; }
+    .hcard-row { display: flex; flex-direction: column; gap: 12px; }
+
+    .hcard-item { display: flex; gap: 12px; align-items: flex-start; }
+    .hcard-icon {
+      width: 32px; height: 32px;
+      background: var(--gold-lite);
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      font-size: 14px;
+    }
+    .hcard-label { font-size: 11px; color: var(--text-3); letter-spacing: 0.06em; text-transform: uppercase; }
+    .hcard-val { font-size: 13px; color: var(--text-1); }
+
+    /* ─── SECTIONS ─── */
+    .section {
+      padding: 100px 60px;
+      border-top: 1px solid var(--border);
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .section.visible { opacity: 1; transform: translateY(0); }
+
+    .section-inner { max-width: 1100px; margin: auto; }
+
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 56px;
+    }
+    .section-num { font-family: var(--font-disp); font-size: 13px; color: var(--gold); letter-spacing: 0.06em; }
+    .section-title { font-family: var(--font-disp); font-size: 42px; font-weight: 600; color: var(--text-1); line-height: 1; letter-spacing: -0.01em; }
+    .section-line { flex: 1; height: 1px; background: var(--border); }
+
+    /* ─── ABOUT ─── */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+
+    .about-text p { font-size: 15px; color: var(--text-2); line-height: 1.9; margin-bottom: 18px; }
+    .about-text p strong { color: var(--text-1); font-weight: 500; }
+
+    .about-details {
+      background: var(--surface);
+      border: 1px solid var(--border-md);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .detail-row { display: flex; align-items: stretch; border-bottom: 1px solid var(--border); }
+    .detail-row:last-child { border-bottom: none; }
+    .detail-key {
+      width: 130px; flex-shrink: 0;
+      padding: 16px 20px;
+      font-size: 11px; text-transform: uppercase; letter-spacing: 0.09em;
+      color: var(--text-3);
+      background: var(--surface2);
+      border-right: 1px solid var(--border);
+      display: flex; align-items: center;
+    }
+    .detail-val { padding: 16px 20px; font-size: 13px; color: var(--text-1); display: flex; align-items: center; }
+
+    /* ─── SKILLS ─── */
+    .skills-wrap { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
+
+    .skill-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+      transition: border-color 0.2s, background 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .skill-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+    .skill-card:hover { border-color: var(--border-md); background: var(--surface2); }
+    .skill-card:hover::after { transform: scaleX(1); }
+    .skill-name { font-size: 14px; font-weight: 500; color: var(--text-1); }
+    .skill-type { font-size: 11px; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.07em; margin-top: 4px; }
+
+    /* ─── EDUCATION ─── */
+    .edu-block {
+      background: var(--surface);
+      border: 1px solid var(--border-md);
+      border-radius: 10px;
+      padding: 40px 44px;
+      display: flex;
+      align-items: flex-start;
+      gap: 32px;
+      position: relative;
+      overflow: hidden;
+    }
+    .edu-block::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: var(--gold);
+    }
+    .edu-year { font-family: var(--font-disp); font-size: 13px; color: var(--gold); letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; padding-top: 4px; }
+    .edu-degree { font-family: var(--font-disp); font-size: 28px; font-weight: 600; color: var(--text-1); line-height: 1.2; margin-bottom: 8px; }
+    .edu-school { font-size: 14px; color: var(--text-2); }
+
+    /* ─── PROJECTS ─── */
+    .projects-list { display: flex; flex-direction: column; gap: 20px; }
+
+    .proj-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 32px 36px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: start;
+      transition: border-color 0.25s, background 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .proj-card.featured { border-color: rgba(201,168,76,0.3); }
+    .proj-card.featured::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 32px; right: 32px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    .proj-card:hover { background: var(--surface2); border-color: var(--border-md); }
+    /* ─── UPDATED PROJECT CARDS ─── */
+    .proj-card {
+        grid-template-columns: 280px 1fr auto; /* Added space for the image */
+        align-items: center;
+    }
+
+    .proj-img-container {
+        width: 100%;
+        height: 180px;
+        border-radius: 6px;
+        overflow: hidden;
+        background: var(--surface2);
+        border: 1px solid var(--border);
+    }
+
+    .proj-img-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+        opacity: 0.8;
+    }
+
+    .proj-card:hover .proj-img-container img {
+        transform: scale(1.05);
+        opacity: 1;
+    }
+
+    @media (max-width: 900px) {
+        .proj-card { 
+            grid-template-columns: 1fr; 
         }
-
-        html {
-            scroll-behavior: smooth;
+        .proj-img-container {
+            height: 200px;
+            margin-bottom: 15px;
         }
+    }
+    .proj-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+    .proj-badge {
+      font-size: 10px; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 4px 10px; border-radius: 3px; border: 1px solid;
+    }
+    .badge-gold { color: var(--gold); border-color: rgba(201,168,76,0.4); background: var(--gold-lite); }
+    .badge-blue { color: #7eb8d4; border-color: rgba(126,184,212,0.3); background: rgba(126,184,212,0.07); }
+    .badge-slate { color: #a0b4c0; border-color: rgba(160,180,192,0.25); background: rgba(160,180,192,0.06); }
 
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background: #0f172a;
-            color: #e5e7eb;
-            line-height: 1.7;
-        }
+    .proj-title { font-family: var(--font-disp); font-size: 24px; font-weight: 600; color: var(--text-1); line-height: 1.25; margin-bottom: 12px; }
+    .proj-desc { font-size: 13.5px; color: var(--text-2); line-height: 1.8; max-width: 580px; }
 
-        .container {
-            width: 90%;
-            max-width: 1100px;
-            margin: auto;
-            padding: 60px 0;
-        }
+    .proj-actions { display: flex; flex-direction: column; gap: 8px; align-items: flex-end; padding-top: 4px; }
+    .proj-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 9px 18px;
+      border-radius: 4px;
+      font-size: 12px; font-weight: 500; letter-spacing: 0.04em;
+      text-decoration: none; white-space: nowrap;
+      transition: all 0.2s; border: 1px solid;
+    }
+    .proj-link-gold { background: var(--gold); border-color: var(--gold); color: #111; }
+    .proj-link-gold:hover { background: #d4b45e; transform: translateY(-1px); }
+    .proj-link-ghost { background: transparent; border-color: var(--border-md); color: var(--text-2); }
+    .proj-link-ghost:hover { border-color: var(--gold); color: var(--gold); }
 
-        h1, h2, h3 {
-            font-family: 'Oswald', sans-serif;
-            letter-spacing: 1px;
-        }
+    /* ─── FOOTER ─── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 36px 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer-brand { font-family: var(--font-disp); font-size: 16px; color: var(--text-3); }
+    .footer-brand span { color: var(--gold); }
+    .footer-copy { font-size: 12px; color: var(--text-3); }
 
-        h2 {
-            margin-bottom: 20px;
-            color: #38bdf8;
-        }
+    /* ─── HAMBURGER ─── */
+    .hamburger {
+      display: none;
+      background: none;
+      border: 1px solid var(--border-md);
+      border-radius: 4px;
+      padding: 8px 10px;
+      cursor: pointer;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .hamburger span { display: block; width: 18px; height: 1.5px; background: var(--text-2); border-radius: 2px; }
 
-        /* =====================
-           HEADER
-        ===================== */
-        header {
-            height: 100vh;
-            background: linear-gradient(135deg, #020617, #020617cc),
-                        url('hero.jpg') center/cover no-repeat;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-        }
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 64px; left: 0; right: 0;
+      background: var(--charcoal);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 24px;
+      z-index: 99;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a { text-decoration: none; font-size: 14px; color: var(--text-2); padding: 10px 12px; border-radius: 4px; }
+    .mobile-nav a:hover { background: var(--surface); color: var(--text-1); }
 
-        header h1 {
-            font-size: 3rem;
-            animation: fadeUp 1s ease forwards;
-        }
-
-        header .tagline {
-            margin-top: 15px;
-            font-size: 1.1rem;
-            color: #94a3b8;
-            animation: fadeUp 1.4s ease forwards;
-        }
-
-        /* =====================
-           NAVIGATION
-        ===================== */
-        .main-nav {
-            position: sticky;
-            top: 0;
-            background: #020617;
-            z-index: 100;
-            border-bottom: 1px solid #1e293b;
-        }
-
-        .main-nav .container {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            padding: 15px 0;
-        }
-
-        .nav-button {
-            text-decoration: none;
-            color: #e5e7eb;
-            padding: 10px 18px;
-            border-radius: 30px;
-            background: #020617;
-            border: 1px solid #38bdf8;
-            transition: all 0.3s ease;
-        }
-
-        .nav-button:hover {
-            background: #38bdf8;
-            color: #020617;
-            transform: translateY(-3px);
-        }
-
-        /* =====================
-           SECTIONS ANIMATION
-        ===================== */
-        section {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.9s ease;
-        }
-
-        section.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* =====================
-           ABOUT ME
-        ===================== */
-        .about-me-picture {
-            width: 200px;
-            border-radius: 50%;
-            margin: 25px 0;
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-        }
-
-        .about-me-picture:hover {
-            transform: scale(1.08);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-        }
-
-        /* =====================
-           PERSONAL DETAILS
-        ===================== */
-        ul {
-            list-style: none;
-        }
-
-        ul li {
-            margin-bottom: 10px;
-        }
-
-        /* =====================
-           SKILLS
-        ===================== */
-        .skills-grid {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .skill-tag {
-            padding: 10px 18px;
-            border-radius: 25px;
-            background: #020617;
-            border: 1px solid #38bdf8;
-            transition: all 0.3s ease;
-        }
-
-        .skill-tag:hover {
-            background: #38bdf8;
-            color: #020617;
-            transform: scale(1.15);
-        }
-
-        /* =====================
-           PROJECTS
-        ===================== */
-        .project-item {
-            margin-top: 40px;
-            padding: 25px;
-            border-radius: 15px;
-            background: #020617;
-            border: 1px solid #1e293b;
-            transition: all 0.4s ease;
-        }
-
-        .project-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 25px 45px rgba(0,0,0,0.6);
-        }
-
-        .project-img {
-            width: 100%;
-            margin: 20px 0;
-            border-radius: 10px;
-            transition: transform 0.4s ease;
-        }
-
-        .project-item:hover .project-img {
-            transform: scale(1.05);
-        }
-
-        .button {
-            display: inline-block;
-            margin-top: 15px;
-            padding: 12px 22px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .button-primary {
-            background: #38bdf8;
-            color: #020617;
-        }
-
-        .button-primary:hover {
-            background: #0ea5e9;
-            transform: scale(1.05);
-        }
-
-        /* =====================
-           FOOTER
-        ===================== */
-        footer {
-            text-align: center;
-            padding: 25px 0;
-            background: #020617;
-            border-top: 1px solid #1e293b;
-            color: #94a3b8;
-        }
-
-        /* =====================
-           ANIMATIONS
-        ===================== */
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-    </style>
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .topbar { padding: 0 24px; }
+      .topbar-nav { display: none; }
+      .hamburger { display: flex; }
+      .hero { padding: 100px 24px 60px; }
+      .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+      .hero-card { max-width: 420px; }
+      .section { padding: 72px 24px; }
+      .about-grid { grid-template-columns: 1fr; gap: 36px; }
+      .proj-card { grid-template-columns: 1fr; }
+      .proj-actions { flex-direction: row; align-items: center; }
+      footer { flex-direction: column; gap: 10px; text-align: center; padding: 24px; }
+    }
+  </style>
 </head>
 <body>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mark Angelo Lasala - Sporty Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-</head>
-<body>
 
-    <header>
-        <div class="container hero-content">
-            <h1>Hi, I'm Mark Angelo Lasala</h1>
-            <p class="tagline">An Information Technology student passionate about programming and web development.</p>
+<header class="topbar">
+  <div class="topbar-brand">Mark<span>.</span></div>
+  <nav class="topbar-nav">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#education">Education</a>
+    <a href="#projects">Projects</a>
+    <a href="mailto:Markpetpet0827@gmail.com">Contact</a>
+  </nav>
+  <button class="hamburger" id="ham" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<nav class="mobile-nav" id="mobileNav">
+  <a href="#about">About</a>
+  <a href="#skills">Skills</a>
+  <a href="#education">Education</a>
+  <a href="#projects">Projects</a>
+  <a href="mailto:Markpetpet0827@gmail.com">Contact</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">
+        <div class="hero-eyebrow-line"></div>
+        <div class="hero-eyebrow-text">IT Student &amp; Developer</div>
+      </div>
+      <h1 class="hero-title">Mark Angelo<br><em>Lasala</em></h1>
+      <p class="hero-bio">An Information Technology student passionate about programming, web development, and building intelligent systems that make a meaningful impact.</p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-gold">View My Work</a>
+        <a href="mailto:Markpetpet0827@gmail.com" class="btn btn-outline">Get in Touch</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="hcard-avatar">ML</div>
+      <div class="hcard-name">Mark Angelo Lasala</div>
+      <div class="hcard-role">Information Technology <br>Programming</div>
+      <div class="hcard-divider"></div>
+      <div class="hcard-row">
+        <div class="hcard-item">
+          <div class="hcard-icon">📍</div>
+          <div>
+            <div class="hcard-label">Location</div>
+            <div class="hcard-val">Nahulid, Libagon, Southern Leyte</div>
+          </div>
         </div>
-    </header>
-
-    <nav class="main-nav">
-        <div class="container">
-            <a href="#about-me" class="nav-button">About Me</a>
-            <a href="#personal-details" class="nav-button">Personal Details</a>
-            <a href="#skills" class="nav-button">Skills</a>
-            <a href="#education" class="nav-button">Education</a>
-            <a href="#projects" class="nav-button">Projects</a>
+        <div class="hcard-item">
+          <div class="hcard-icon">✉️</div>
+          <div>
+            <div class="hcard-label">Email</div>
+            <div class="hcard-val">Markpetpet0827@gmail.com</div>
+          </div>
         </div>
-    </nav>
-    <main>
-        <section id="about-me" class="container">
-            <h2>About Me</h2>
-            <img src="2.jpg" alt="Mark Angelo Lasala Formal Picture" class="about-me-picture">
-            <p>
-               Hello! My name is Mark Angelo Lasala, and I am a college student passionate about technology and innovation. Currently pursuing a degree in INFORMATION TECHNOLOGY MAJOR IN PROGRAMMING, I am eager to explore opportunities that allow me to grow and make a meaningful impact in my field.
-I am developing skills in software development, database management, and creating user-friendly web applications. I enjoy taking on new challenges to expand my knowledge and improve my expertise. Whether it's building dynamic websites, solving coding problems, or learning new programming languages, I approach everything I do with enthusiasm and determination.
-In my free time, you can find me playing mobile games.
-I believe in lifelong learning, collaboration, and the power of technology to transform lives. I aim to apply these values in my studies and future career.
-I look forward to connecting with like-minded individuals and contributing to projects that inspire innovation and growth.
-            </p>
-        </section>
+        <div class="hcard-item">
+          <div class="hcard-icon">📱</div>
+          <div>
+            <div class="hcard-label">Phone</div>
+            <div class="hcard-val">09532214110</div>
+          </div>
+        </div>
+        <div class="hcard-item">
+          <div class="hcard-icon">🎓</div>
+          <div>
+            <div class="hcard-label">University</div>
+            <div class="hcard-val">Southern Leyte State University <br> Bontoc Campus</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        <section id="personal-details" class="container">
-            <h2>Personal Details</h2>
-            <ul>
-                <li><strong>Name:</strong> Mark Angelo Lasala</li>
-                <li><strong>Location:</strong> Nahulid, Libagon Southern Leyte</li>
-                <li><strong>Email:</strong> Markpetpet0827@gmail.com</li>
-                <li><strong>Phone:</strong>  09532214110</li>
-            </ul>
-        </section>
+<section class="section" id="about">
+  <div class="section-inner">
+    <div class="section-label">
+      <span class="section-num">01</span>
+      <h2 class="section-title">About Me</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>Hello! I am <strong>Mark Angelo Lasala</strong>, a college student pursuing a degree in <strong>Information Technology Major in Programming</strong> at Southern Leyte State University – Bontoc Campus.</p>
+        <p>I am developing skills in <strong>software development</strong>, <strong>database management</strong>, and creating user-friendly web applications. I enjoy taking on new challenges to expand my knowledge — whether it's building dynamic websites, solving coding problems, or learning new programming languages.</p>
+        <p>I believe in lifelong learning, collaboration, and the power of technology to transform lives. I look forward to connecting with like-minded individuals and contributing to projects that inspire innovation and growth.</p>
+      </div>
+      <div class="about-details">
+        <div class="detail-row"><div class="detail-key">Full Name</div><div class="detail-val">Mark Angelo Lasala</div></div>
+        <div class="detail-row"><div class="detail-key">Location</div><div class="detail-val">Nahulid, Libagon, Southern Leyte</div></div>
+        <div class="detail-row"><div class="detail-key">Email</div><div class="detail-val">Markpetpet0827@gmail.com</div></div>
+        <div class="detail-row"><div class="detail-key">Phone</div><div class="detail-val">09532214110</div></div>
+        <div class="detail-row"><div class="detail-key">Degree</div><div class="detail-val">BS Information Technology</div></div>
+        <div class="detail-row"><div class="detail-key">Major</div><div class="detail-val">Programming</div></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        <section id="skills" class="container">
-            <h2>Skills</h2>
-            <div class="skills-grid">
-                <span class="skill-tag">HTML</span>
-                <span class="skill-tag">CSS</span>
-                <span class="skill-tag">Laravel</span>
-                <span class="skill-tag">JavaScript</span>
-                <span class="skill-tag">MySQL</span>
-            </div>
-        </section>
+<section class="section" id="skills">
+  <div class="section-inner">
+    <div class="section-label">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Skills</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="skills-wrap">
+      <div class="skill-card"><div class="skill-name">HTML</div><div class="skill-type">Markup</div></div>
+      <div class="skill-card"><div class="skill-name">CSS</div><div class="skill-type">Styling</div></div>
+      <div class="skill-card"><div class="skill-name">JavaScript</div><div class="skill-type">Frontend</div></div>
+      <div class="skill-card"><div class="skill-name">Laravel</div><div class="skill-type">Framework</div></div>
+      <div class="skill-card"><div class="skill-name">MySQL</div><div class="skill-type">Database</div></div>
+      <div class="skill-card"><div class="skill-name">Machine Learning</div><div class="skill-type">AI / ML</div></div>
+      <div class="skill-card"><div class="skill-name">Computer Vision</div><div class="skill-type">AI / ML</div></div>
+    </div>
+  </div>
+</section>
 
-        <section id="education" class="container">
-            <h2>Education</h2>
-            <p>
-                <strong>Bachelor of Science Information Technology Major in PROGRAMMING</strong><br>
-                SLSU Bontoc (Southern Leyte State University - Bontoc Campus)<br>
-            </p>
-        </section>
+<section class="section" id="education">
+  <div class="section-inner">
+    <div class="section-label">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Education</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="edu-block">
+      <div class="edu-year">Current</div>
+      <div>
+        <div class="edu-degree">Bachelor of Science in Information Technology</div>
+        <div class="edu-school">Major in Programming &mdash; Southern Leyte State University, Bontoc Campus</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        <section id="projects" class="container">
-            <h2>Works</h2>
+<section class="section" id="projects">
+  <div class="section-inner">
+    <div class="section-label">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Projects</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="projects-list">
 
-<div class="project-item">
-    <h3>Capstone Project:VolleyAI; REAL-TIME VOLLEYBALL POSE ESTIMATION AND PERFORMANCE ANALYSIS USING MACHINE LEARNING</h3>
-    <img src="6.png" alt="VolleyAI Capstone Project Screenshot" class="project-img">
-    <p>
-        This is my official Capstone Project developed at SLSU Bontoc. VolleyAI is a web-based
-        volleyball performance analysis system that uses computer vision and artificial intelligence
-        to evaluate player movements. The system allows athletes to upload volleyball training videos,
-        automatically analyzes body poses and actions, and generates quantitative performance scores
-        and AI-based feedback. Coaches can review sessions, assign drills, and provide manual feedback,
-        enabling data-driven training and continuous performance improvement.
-    </p>
-    <a href="https://volleyai.cloud/" target="_blank" class="button button-primary">
-        View Capstone Project
-    </a>
+  <div class="proj-card featured">
+    <div class="proj-img-container">
+      <img src="6.png" alt="VolleyAI Interface">
+    </div>
+    <div>
+      <div class="proj-meta"><span class="proj-badge badge-gold">Capstone Project</span></div>
+      <div class="proj-title">VolleyAI — Real-Time Volleyball Pose Estimation</div>
+      <p class="proj-desc">A web-based performance analysis system leveraging computer vision to evaluate player movements and generate AI feedback.</p>
+    </div>
+    <div class="proj-actions">
+      <a href="https://volleyai.cloud/" target="_blank" class="proj-link proj-link-gold">View Live →</a>
+    </div>
+  </div>
+
+  <div class="proj-card">
+    <div class="proj-img-container">
+      <img src="3.png" alt="Bargo POS Screenshot">
+    </div>
+    <div>
+      <div class="proj-meta"><span class="proj-badge badge-blue">POS System</span></div>
+      <div class="proj-title">Bargo POS</div>
+      <p class="proj-desc">A point-of-sale system designed to streamline sales and inventory with real-time reporting and user-friendly management.</p>
+    </div>
+    <div class="proj-actions">
+      <a href="https://github.com/markangelo08272002/BARGO_POS" target="_blank" class="proj-link proj-link-ghost">GitHub →</a>
+    </div>
+  </div>
+
+  <div class="proj-card">
+    <div class="proj-img-container">
+      <img src="4.png" alt="Document Tracking">
+    </div>
+    <div>
+      <div class="proj-meta"><span class="proj-badge badge-slate">Document System</span></div>
+      <div class="proj-title">Document Tracking System</div>
+      <p class="proj-desc">A digital tool to monitor and manage procurement-related documents, ensuring transparency and efficient workflow.</p>
+    </div>
+    <div class="proj-actions"></div>
+  </div>
+
 </div>
+  </div>
+</section>
 
+<footer>
+  <div class="footer-brand">Mark Angelo Lasala<span>.</span></div>
+  <div class="footer-copy">&copy; 2025 — All rights reserved.</div>
+</footer>
 
-            <div class="project-item">
-                <h3>Bargo POS</h3>
-                <img src="3.png" alt="Project 1 Screenshot" class="project-img">
-                <p>
-                    A Bargo POS is a point-of-sale system designed to streamline sales, inventory, and customer management for businesses, offering features like real-time reporting, user-friendly interfaces, and support for various payment methods.
-                </p>
-                <a href="https://github.com/markangelo08272002/BARGO_POS" target="_blank" class="button button-primary">GitHub Link</a>
-            </div>
+<script>
+  const ham = document.getElementById('ham');
+  const mobileNav = document.getElementById('mobileNav');
+  ham.addEventListener('click', () => mobileNav.classList.toggle('open'));
+  mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileNav.classList.remove('open')));
 
-            <div class="project-item">
-                <h3>(Document Tracking System) Procurement</h3>
-                <img src="4.png" alt="Project 2 Screenshot" class="project-img">
-                <p>
-                    The Document Tracking System for Procurement is a digital tool used to monitor, manage, and track procurement-related documents, ensuring transparency, accountability, and efficient workflow throughout the procurement process.
-                </p>
-            </div>
-
-            <div class="project-item">
-                <h3>Lost and Found</h3>
-                <img src="5.png" alt="Project 3 Screenshot" class="project-img">
-                <p>
-                   The Lost and Found system is a platform used to record, track, and manage lost or recovered items, helping individuals report missing belongings and facilitating their return through organized documentation and retrieval processes.
-                </p>
-            </div>
-
-        </section>
-    </main>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Mark Angelo Lasala. Unleashing digital potential.</p>
-        </div>
-    </footer>
-
-</body>
-</html>
-    <script>
-        const sections = document.querySelectorAll("section");
-
-        const revealOnScroll = () => {
-            const triggerBottom = window.innerHeight * 0.85;
-
-            sections.forEach(section => {
-                const sectionTop = section.getBoundingClientRect().top;
-
-                if (sectionTop < triggerBottom) {
-                    section.classList.add("show");
-                }
-            });
-        };
-
-        window.addEventListener("scroll", revealOnScroll);
-        revealOnScroll();
-    </script>
-
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.07 });
+  document.querySelectorAll('.section').forEach(s => obs.observe(s));
+</script>
 </body>
 </html>
