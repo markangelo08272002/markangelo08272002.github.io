@@ -13,10 +13,10 @@
       --surface2:  #2a2a28;
       --border:    rgba(255,255,255,0.07);
       --border-md: rgba(255,255,255,0.12);
-      --gold:      #c9a84c;
+      --gold:      #2e9699;
       --gold-lite: rgba(201,168,76,0.10);
       --gold-mid:  rgba(201,168,76,0.22);
-      --text-1:    #f0ede6;
+      --text-1:     #f0ede6;
       --text-2:    #a09d96;
       --text-3:    #686560;
       --font-disp: 'Cormorant Garamond', Georgia, serif;
@@ -39,7 +39,7 @@
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 100;
-      background: rgba(17,17,16,0.92);
+      background: rgba(17, 16, 17, 0.92);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
       display: flex;
@@ -58,7 +58,7 @@
     }
     .topbar-brand span { color: var(--gold); }
 
-    .topbar-nav { display: flex; gap: 4px; }
+    .topbar-nav { display: flex; align-items: center; gap: 4px; }
 
     .topbar-nav a {
       text-decoration: none;
@@ -72,8 +72,18 @@
     }
     .topbar-nav a:hover { color: var(--text-1); background: var(--surface); }
 
+    .topbar-cta {
+      margin-left: 10px;
+      background: var(--gold);
+      color: #111 !important;
+      padding: 8px 18px !important;
+      border-radius: 4px;
+      font-weight: 600 !important;
+      letter-spacing: 0.04em;
+    }
+    .topbar-cta:hover { background: #d4b45e !important; }
+
     /* ─── HERO ─── */
-    /* ─── UPDATED HERO SECTION ─── */
     .hero {
       min-height: 100vh;
       display: flex;
@@ -93,13 +103,26 @@
       top: -200px; right: -200px;
       width: 700px; height: 700px;
       border-radius: 50%;
-      /* Subtle gold glow to keep the premium aesthetic */
       background: radial-gradient(circle, rgba(201,168,76,0.15) 0%, transparent 70%);
       pointer-events: none;
       z-index: 1;
     }
-    
-    /* Ensure text stays above the background image */
+
+    /* subtle web-line motif in the empty corner, a quiet nod to the "friendly neighborhood coder" line below */
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -120px; left: -120px;
+      width: 360px; height: 360px;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.05;
+      background-image:
+        repeating-conic-gradient(from 0deg, var(--gold) 0deg 0.6deg, transparent 0.6deg 30deg);
+      border-radius: 50%;
+      mask: radial-gradient(circle, black 0%, black 40%, transparent 75%);
+    }
+
     .hero-inner {
       position: relative;
       z-index: 2;
@@ -143,7 +166,28 @@
       color: var(--text-2);
       max-width: 500px;
       line-height: 1.8;
-      margin-bottom: 44px;
+      margin-bottom: 24px;
+    }
+
+    .hero-availability {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-2);
+      border: 1px solid var(--border-md);
+      border-radius: 20px;
+      padding: 7px 16px;
+      margin-bottom: 36px;
+    }
+    .hero-availability::before {
+      content: '';
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: #7ec98c;
+      box-shadow: 0 0 0 3px rgba(126,201,140,0.18);
     }
 
     .hero-actions { display: flex; gap: 14px; }
@@ -195,7 +239,7 @@
       margin-bottom: 20px;
     }
     .hcard-name { font-family: var(--font-disp); font-size: 22px; font-weight: 600; color: var(--text-1); margin-bottom: 4px; }
-    .hcard-role { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 24px; }
+    .hcard-role { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 24px; line-height: 1.6; }
     .hcard-divider { height: 1px; background: var(--border); margin-bottom: 20px; }
     .hcard-row { display: flex; flex-direction: column; gap: 12px; }
 
@@ -206,10 +250,13 @@
       border-radius: 6px;
       display: flex; align-items: center; justify-content: center;
       flex-shrink: 0;
-      font-size: 14px;
+      color: var(--gold);
     }
+    .hcard-icon svg { width: 16px; height: 16px; }
     .hcard-label { font-size: 11px; color: var(--text-3); letter-spacing: 0.06em; text-transform: uppercase; }
     .hcard-val { font-size: 13px; color: var(--text-1); }
+    .hcard-val a { color: var(--text-1); text-decoration: none; border-bottom: 1px solid transparent; }
+    .hcard-val a:hover { color: var(--gold); border-bottom-color: var(--gold); }
 
     /* ─── SECTIONS ─── */
     .section {
@@ -257,6 +304,8 @@
       display: flex; align-items: center;
     }
     .detail-val { padding: 16px 20px; font-size: 13px; color: var(--text-1); display: flex; align-items: center; }
+    .detail-val-icon { display: flex; align-items: center; gap: 8px; }
+    .detail-val-icon svg { width: 14px; height: 14px; flex-shrink: 0; color: var(--gold); }
 
     /* ─── SKILLS ─── */
     .skills-wrap { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
@@ -317,13 +366,14 @@
       border-radius: 10px;
       padding: 32px 36px;
       display: grid;
-      grid-template-columns: 1fr auto;
+      grid-template-columns: 280px 1fr auto;
       gap: 24px;
-      align-items: start;
+      align-items: center;
       transition: border-color 0.25s, background 0.25s;
       position: relative;
       overflow: hidden;
     }
+    .proj-card.no-image { grid-template-columns: 1fr auto; }
     .proj-card.featured { border-color: rgba(201,168,76,0.3); }
     .proj-card.featured::before {
       content: '';
@@ -333,11 +383,6 @@
       background: linear-gradient(90deg, transparent, var(--gold), transparent);
     }
     .proj-card:hover { background: var(--surface2); border-color: var(--border-md); }
-    /* ─── UPDATED PROJECT CARDS ─── */
-    .proj-card {
-        grid-template-columns: 280px 1fr auto; /* Added space for the image */
-        align-items: center;
-    }
 
     .proj-img-container {
         width: 100%;
@@ -434,8 +479,10 @@
       gap: 4px;
     }
     .mobile-nav.open { display: flex; }
-    .mobile-nav a { text-decoration: none; font-size: 14px; color: var(--text-2); padding: 10px 12px; border-radius: 4px; }
+    .mobile-nav a, .mobile-nav .nav-static { text-decoration: none; font-size: 14px; color: var(--text-2); padding: 10px 12px; border-radius: 4px; }
     .mobile-nav a:hover { background: var(--surface); color: var(--text-1); }
+    .mobile-nav .nav-static { cursor: default; }
+    .topbar-cta.static { cursor: default; }
 
     /* ─── RESPONSIVE ─── */
     @media (max-width: 900px) {
@@ -462,7 +509,7 @@
     <a href="#skills">Skills</a>
     <a href="#education">Education</a>
     <a href="#projects">Projects</a>
-    <a href="mailto:Markpetpet0827@gmail.com">Contact</a>
+    <span class="topbar-cta static">Hire Me</span>
   </nav>
   <button class="hamburger" id="ham" aria-label="Menu">
     <span></span><span></span><span></span>
@@ -474,7 +521,7 @@
   <a href="#skills">Skills</a>
   <a href="#education">Education</a>
   <a href="#projects">Projects</a>
-  <a href="mailto:Markpetpet0827@gmail.com">Contact</a>
+  <span class="nav-static">Hire Me</span>
 </nav>
 
 <section class="hero">
@@ -482,47 +529,66 @@
     <div>
       <div class="hero-eyebrow">
         <div class="hero-eyebrow-line"></div>
-        <div class="hero-eyebrow-text">IT Student &amp; Developer</div>
+        <div class="hero-eyebrow-text">IT Graduate &amp; Web Developer</div>
       </div>
       <h1 class="hero-title">Mark Angelo<br><em>Lasala</em></h1>
-      <p class="hero-bio">An Information Technology student passionate about programming, web development, and building intelligent systems that make a meaningful impact.</p>
+      <p class="hero-bio">A graduate of Information Technology, Major in Programming, focused on building dependable web platforms and intelligent IoT systems. I turn real-world problems &mdash; from inventory to identity verification &mdash; into working software.</p>
+      <div class="hero-availability">Open to freelance projects &amp; full-time roles</div>
       <div class="hero-actions">
         <a href="#projects" class="btn btn-gold">View My Work</a>
-        <a href="mailto:Markpetpet0827@gmail.com" class="btn btn-outline">Get in Touch</a>
+        <a href="mailto:markangelodev00@gmail.com" class="btn btn-outline">Let's Work Together</a>
       </div>
     </div>
     <div class="hero-card">
       <div class="hcard-avatar">ML</div>
       <div class="hcard-name">Mark Angelo Lasala</div>
-      <div class="hcard-role">Information Technology <br>Programming</div>
+      <div class="hcard-role">IT Graduate — Web &amp; IoT Developer</div>
       <div class="hcard-divider"></div>
       <div class="hcard-row">
         <div class="hcard-item">
-          <div class="hcard-icon">📍</div>
+          <div class="hcard-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.1-7-11.5A7 7 0 0 1 19 9.5C19 14.9 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.3"/></svg>
+          </div>
           <div>
             <div class="hcard-label">Location</div>
             <div class="hcard-val">Nahulid, Libagon, Southern Leyte</div>
           </div>
         </div>
         <div class="hcard-item">
-          <div class="hcard-icon">✉️</div>
+          <div class="hcard-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+          </div>
           <div>
             <div class="hcard-label">Email</div>
-            <div class="hcard-val">Markpetpet0827@gmail.com</div>
+            <div class="hcard-val">markangelodev00@gmail.com</div>
           </div>
         </div>
         <div class="hcard-item">
-          <div class="hcard-icon">📱</div>
+          <div class="hcard-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v2a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 1H6.1a2 2 0 0 1 2 1.72c.13.99.36 1.96.68 2.89a2 2 0 0 1-.45 2.11L7.1 8.91a16 16 0 0 0 6 6l1.19-1.27a2 2 0 0 1 2.11-.45c.93.32 1.9.55 2.89.68A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
           <div>
             <div class="hcard-label">Phone</div>
             <div class="hcard-val">09532214110</div>
+            <div class="hcard-val">09465849429</div>
           </div>
         </div>
         <div class="hcard-item">
-          <div class="hcard-icon">🎓</div>
+          <div class="hcard-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9l10-5 10 5-10 5-10-5z"/><path d="M6 11v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/></svg>
+          </div>
           <div>
-            <div class="hcard-label">University</div>
-            <div class="hcard-val">Southern Leyte State University <br> Bontoc Campus</div>
+            <div class="hcard-label">Education</div>
+            <div class="hcard-val">Southern Leyte State University, Bontoc Campus — Graduate</div>
+          </div>
+        </div>
+        <div class="hcard-item">
+          <div class="hcard-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="12" r="2.3"/><circle cx="18" cy="6" r="2.3"/><circle cx="18" cy="18" r="2.3"/><path d="M8.1 10.9l7.8-4.5M8.1 13.1l7.8 4.5"/></svg>
+          </div>
+          <div>
+            <div class="hcard-label">Facebook</div>
+            <div class="hcard-val"><a href="https://web.facebook.com/angel.lolasala.16" target="_blank" rel="noopener">facebook.com/angel.lolasala.16</a></div>
           </div>
         </div>
       </div>
@@ -538,18 +604,31 @@
       <div class="section-line"></div>
     </div>
     <div class="about-grid">
-      <div class="about-text">
-        <p>Hello! I am <strong>Mark Angelo Lasala</strong>, a college student pursuing a degree in <strong>Information Technology Major in Programming</strong> at Southern Leyte State University – Bontoc Campus.</p>
-        <p>I am developing skills in <strong>software development</strong>, <strong>database management</strong>, and creating user-friendly web applications. I enjoy taking on new challenges to expand my knowledge — whether it's building dynamic websites, solving coding problems, or learning new programming languages.</p>
-        <p>I believe in lifelong learning, collaboration, and the power of technology to transform lives. I look forward to connecting with like-minded individuals and contributing to projects that inspire innovation and growth.</p>
-      </div>
+     <div class="about-text">
+  <p>Hello! I am <strong>Mark Angelo Lasala</strong>, a graduate of <strong>Bachelor of Science in Information Technology</strong> from <strong>Southern Leyte State University – Bontoc Campus</strong>.</p>
+
+  <p>I am passionate about developing efficient, reliable, and user-friendly technology solutions. My skills include <strong>software development</strong>, <strong>database management</strong>, <strong>web application development</strong>, and <strong>programming</strong>. I enjoy solving complex problems, exploring new technologies, and continuously improving my technical expertise.</p>
+
+  <p>Through academic projects and hands-on experience, I have built a strong foundation in designing, developing, and maintaining systems that address real-world challenges. I am committed to delivering quality work, collaborating effectively with others, and growing as a technology professional.</p>
+
+  <p>I am eager to apply my knowledge, gain valuable industry experience, and contribute to meaningful projects. Whether working independently or as part of a team, I strive to learn, innovate, and make a positive impact through technology.</p>
+</div>
       <div class="about-details">
         <div class="detail-row"><div class="detail-key">Full Name</div><div class="detail-val">Mark Angelo Lasala</div></div>
         <div class="detail-row"><div class="detail-key">Location</div><div class="detail-val">Nahulid, Libagon, Southern Leyte</div></div>
-        <div class="detail-row"><div class="detail-key">Email</div><div class="detail-val">Markpetpet0827@gmail.com</div></div>
+        <div class="detail-row"><div class="detail-key">Email</div><div class="detail-val">markangelodev00@gmail.com</div></div>
         <div class="detail-row"><div class="detail-key">Phone</div><div class="detail-val">09532214110</div></div>
-        <div class="detail-row"><div class="detail-key">Degree</div><div class="detail-val">BS Information Technology</div></div>
+        <div class="detail-row"><div class="detail-key">Degree</div><div class="detail-val">BS Information Technology — Graduate</div></div>
         <div class="detail-row"><div class="detail-key">Major</div><div class="detail-val">Programming</div></div>
+        <div class="detail-row">
+          <div class="detail-key">Philosophy</div>
+          <div class="detail-val">
+            <span class="detail-val-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 2l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4L12 2z"/></svg>
+              I believe the law of attraction is real — what you think, you create; what you feel, you attract.
+            </span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -567,6 +646,7 @@
       <div class="skill-card"><div class="skill-name">CSS</div><div class="skill-type">Styling</div></div>
       <div class="skill-card"><div class="skill-name">JavaScript</div><div class="skill-type">Frontend</div></div>
       <div class="skill-card"><div class="skill-name">Laravel</div><div class="skill-type">Framework</div></div>
+      <div class="skill-card"><div class="skill-name">Git &amp; GitHub</div><div class="skill-type">Version Control</div></div>
       <div class="skill-card"><div class="skill-name">MySQL</div><div class="skill-type">Database</div></div>
       <div class="skill-card"><div class="skill-name">Machine Learning</div><div class="skill-type">AI / ML</div></div>
       <div class="skill-card"><div class="skill-name">Computer Vision</div><div class="skill-type">AI / ML</div></div>
@@ -581,13 +661,27 @@
       <h2 class="section-title">Education</h2>
       <div class="section-line"></div>
     </div>
+
     <div class="edu-block">
-      <div class="edu-year">Current</div>
+      <div class="edu-year">Graduate</div>
+
       <div>
         <div class="edu-degree">Bachelor of Science in Information Technology</div>
-        <div class="edu-school">Major in Programming &mdash; Southern Leyte State University, Bontoc Campus</div>
+        <div class="edu-school">
+          Major in Programming — Southern Leyte State University, Bontoc Campus
+        </div>
+
+        <div class="edu-achievement">
+          <strong>Exemplary Capstone Project (Best Capstone Award):</strong><br>
+          REAL-TIME VOLLEYBALL POSE ESTIMATION AND PERFORMANCE ANALYSIS USING MACHINE LEARNING
+        </div>
+
+        <div class="edu-role">
+          <strong>Role:</strong> Project Leader
+        </div>
       </div>
     </div>
+
   </div>
 </section>
 
@@ -640,13 +734,31 @@
     <div class="proj-actions"></div>
   </div>
 
+  <div class="proj-card">
+    <div>
+      <div class="proj-meta"><span class="proj-badge badge-blue">IoT Project</span></div>
+      <div class="proj-title">Smart Egg Sorter</div>
+      <p class="proj-desc">An IoT-based sorting machine that uses sensors and embedded controllers to automatically grade and sort eggs by size and quality, cutting down manual labor and improving consistency.</p>
+    </div>
+    <div class="proj-actions"></div>
+  </div>
+
+  <div class="proj-card no-image">
+    <div>
+      <div class="proj-meta"><span class="proj-badge badge-slate">IoT Project</span></div>
+      <div class="proj-title">Face Recognition with RFID Verification</div>
+      <p class="proj-desc">A hybrid identity-verification system that pairs facial recognition with RFID tagging for accurate, tamper-resistant attendance and access control.</p>
+    </div>
+    <div class="proj-actions"></div>
+  </div>
+
 </div>
   </div>
 </section>
 
 <footer>
   <div class="footer-brand">Mark Angelo Lasala<span>.</span></div>
-  <div class="footer-copy">&copy; 2025 — All rights reserved.</div>
+  <div class="footer-copy">Open to freelance work &amp; full-time opportunities.</div>
 </footer>
 
 <script>
